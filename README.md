@@ -4,19 +4,21 @@ License: `MIT`
 
 Allow method `DateChange`:
 ```php
-addDay(int $count = 1)
-addMonth(int $count = 1)
-addYear(int $count = 1)
-addHour(int $count = 1)
-addMinute(int $count = 1)
-addSeconds(int $count = 1)
+interface DateChange {
+    function addDay(int $count = 1)
+    function addMonth(int $count = 1)
+    function addYear(int $count = 1)
+    function addHour(int $count = 1)
+    function addMinute(int $count = 1)
+    function addSeconds(int $count = 1)
 
-subDay(int $count = 1)
-subMonth(int $count = 1)
-subYear(int $count = 1)
-subHour(int $count = 1)
-subMinute(int $count = 1)
-subSeconds(int $count = 1)
+    function subDay(int $count = 1)
+    function subMonth(int $count = 1)
+    function subYear(int $count = 1)
+    function subHour(int $count = 1)
+    function subMinute(int $count = 1)
+    function subSeconds(int $count = 1)
+}
 ```
 
 Example `DateChange`:
@@ -26,22 +28,25 @@ Example `DateChange`:
 use DrLenux\DataHelper\DateChange; 
 
 $date = (new DateChange('2012-12-12'))
+            ->addYear()
             ->addMonth(2)
-            ->subSeconds();
+            ->subDay();
 ```
 
 Allow method `DateFill`:
 ```php
-to(string $to)
-from(string $from)
-inclusiveStart(bool $status)
-inclusiveEnd(bool $status)
-interval(string $interval)
-format(string $format)
-timezone(\DateTimeZone $timezone = null)
+interface DateFill {
+    function to(string $to)
+    function from(string $from)
+    function inclusiveStart(bool $status)
+    function inclusiveEnd(bool $status)
+    function interval(string $interval)
+    function format(string $format)
+    function timezone(\DateTimeZone $timezone = null)
 
-fill()
-getErrors()
+    function fill()
+    function getErrors()
+}
 ```
 
 Example `DateFill`:
@@ -72,6 +77,18 @@ Example `Interval`:
 use DrLenux\DataHelper\DateFill;
 
 (new DateFill())
+    ->from('2011-10-09 23:59:59')
+    ->to('2011-10-09 23:50:00')
     ->interval('PT2M') // every 2 minute
+    ->format('H:i:s')
     ->fill(); 
+
+/*
+return [
+    '23:57:59',
+    '23:55:59',
+    '23:53:59',
+    '23:51:59'
+];
+*/
 ```

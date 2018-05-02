@@ -7,19 +7,19 @@ namespace DrLenux\DataHelper;
 /**
  * Class DateChange
  *
- * @method $this addDay(int $count = null)
- * @method $this addMonth(int $count = null)
- * @method $this addYear(int $count)
- * @method $this addHour(int $count)
- * @method $this addMinute(int $count)
- * @method $this addSeconds(int $count = null)
+ * @method $this addDay(int $count = 1)
+ * @method $this addMonth(int $count = 1)
+ * @method $this addYear(int $count = 1)
+ * @method $this addHour(int $count = 1)
+ * @method $this addMinute(int $count = 1)
+ * @method $this addSeconds(int $count = 1)
  *
- * @method $this subDay(int $count)
- * @method $this subMonth(int $count)
- * @method $this subYear(int $count)
- * @method $this subHour(int $count)
- * @method $this subMinute(int $count)
- * @method $this subSeconds(int $count = null)
+ * @method $this subDay(int $count = 1)
+ * @method $this subMonth(int $count = 1)
+ * @method $this subYear(int $count = 1)
+ * @method $this subHour(int $count = 1)
+ * @method $this subMinute(int $count = 1)
+ * @method $this subSeconds(int $count = 1)
  */
 class DateChange
 {
