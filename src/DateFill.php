@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DrLenux\DataHelper;
 
 /**
@@ -78,9 +80,10 @@ class DateFill
     }
     
     /**
+     * @return string[]
      * @throws \Exception
      */
-    public function fill()
+    public function fill():array
     {
         $this->fillData();
         $results = [];
@@ -142,6 +145,9 @@ class DateFill
         $this->fillFormat();
     }
     
+    /**
+     *
+     */
     private function fillFormat()
     {
         $this->_format = $this->_params['format'] ?? DateFill::DEFAULT_FORMAT;

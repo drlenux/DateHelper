@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use DrLenux\DataHelper\DateChange;
 
 /**
- * Class DateHelperTest
+ * Class DateChangeTest
  */
 class DateChangeTest extends TestCase
 {
