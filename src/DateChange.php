@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DrLenux\Helpers;
+namespace DrLenux\DataHelper;
 
 /**
- * Class DateHelper
+ * Class DateChange
  *
  * @method $this addDay(int $count = null)
  * @method $this addMonth(int $count = null)
@@ -21,7 +21,7 @@ namespace DrLenux\Helpers;
  * @method $this subMinute(int $count)
  * @method $this subSeconds(int $count = null)
  */
-class DateHelper
+class DateChange
 {
     const SECONDS = 'PT{count}S';
     const MINUTE = 'PT{count}M';
@@ -30,8 +30,8 @@ class DateHelper
     const MONTH = 'P{count}M';
     const YEAR = 'P{count}Y';
     
-    const DEFAULT_FORMAT = 'Y-m-d H:i:s';
     const TODAY = 'today';
+    const DEFAULT_FORMAT = 'Y-m-d H:i:s';
     
     /**
      * @var \DateTime
@@ -119,59 +119,5 @@ class DateHelper
     protected function add(int $count, string $type)
     {
         $this->_date->add(new \DateInterval(str_replace('{count}', $count, $type)));
-    }
-    
-    /**
-     * @param string $to
-     * @param string $format
-     * @param bool $inclusiveStart
-     * @param bool $inclusiveEnd
-     * @param \DateInterval|null $interval
-     * @param \DateTimeZone|null $timezone
-     * @return array
-     * @throws \Exception
-     */
-    public function fill(
-        string $to,
-        string $format = self::DEFAULT_FORMAT,
-        bool $inclusiveStart = false,
-        bool $inclusiveEnd = false,
-        \DateInterval $interval = null,
-        \DateTimeZone $timezone = null): array
-    {
-        $to = new \DateTime($to, $timezone);
-        if ($interval === null) {
-            $interval = new \DateInterval('P1D');
-        }
-        $result = [];
-        $tmp = new \DateTime($this->getDate());
-        $vector = ($to > $tmp) ? 'up' : 'down';
-        if ($inclusiveStart) {
-            $result[] = $tmp->format($format);
-        }
-        while ($to !== $tmp) {
-            switch ($vector) {
-                case 'up' :
-                    $tmp->add($interval);
-                    if ($to > $tmp) {
-                        $result[] = $tmp->format($format);
-                    } else {
-                        $to = $tmp;
-                    }
-                    break;
-                case 'down':
-                    $tmp->sub($interval);
-                    if ($to < $tmp) {
-                        $result[] = $tmp->format($format);
-                    } else {
-                        $to = $tmp;
-                    }
-                    break;
-            }
-        }
-        if ($inclusiveEnd) {
-            $result[] = $to->format($format);
-        }
-        return $result;
     }
 }

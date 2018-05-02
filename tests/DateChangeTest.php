@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use DrLenux\Helpers\DateHelper;
+use DrLenux\DataHelper\DateChange;
 
 /**
  * Class DateHelperTest
  */
-class DateHelperTest extends TestCase
+class DateChangeTest extends TestCase
 {
     /**
      *
@@ -16,10 +16,10 @@ class DateHelperTest extends TestCase
     public function testCreateClass()
     {
         $date = '2011-01-01';
-        $class = new DateHelper($date);
+        $class = new DateChange($date);
         $this->assertEquals($date, $class->getDate('Y-m-d'));
         
-        $date = (new DateHelper('2012-12-12'))
+        $date = (new DateChange('2012-12-12'))
             ->addMonth(2)
             ->subSeconds();
         $this->assertEquals(
@@ -33,7 +33,7 @@ class DateHelperTest extends TestCase
      */
     public function testCreateClassFail()
     {
-        new DateHelper('asdf');
+        new DateChange('asdf');
     }
     
     /**
@@ -42,7 +42,7 @@ class DateHelperTest extends TestCase
     public function testAddDay()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-12-01',
             $class
@@ -54,7 +54,7 @@ class DateHelperTest extends TestCase
     public function testAddMonth()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-12-30',
             $class
@@ -66,7 +66,7 @@ class DateHelperTest extends TestCase
     public function testAddYear()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2012-11-30',
             $class
@@ -78,7 +78,7 @@ class DateHelperTest extends TestCase
     public function testSubDay()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-29',
             $class
@@ -90,7 +90,7 @@ class DateHelperTest extends TestCase
     public function testSubMonth()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-10-30',
             $class
@@ -102,7 +102,7 @@ class DateHelperTest extends TestCase
     public function testSubYear()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2010-11-30',
             $class
@@ -114,7 +114,7 @@ class DateHelperTest extends TestCase
     public function testAddSeconds()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-30 00:00:01',
             $class
@@ -126,7 +126,7 @@ class DateHelperTest extends TestCase
     public function testSubSeconds()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-29 23:59:59',
             $class
@@ -138,7 +138,7 @@ class DateHelperTest extends TestCase
     public function testAddMinute()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-30 00:01:00',
             $class
@@ -150,7 +150,7 @@ class DateHelperTest extends TestCase
     public function testSubMinute()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-29 23:59:00',
             $class
@@ -162,7 +162,7 @@ class DateHelperTest extends TestCase
     public function testAddHour()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-30 01:00:00',
             $class
@@ -174,43 +174,12 @@ class DateHelperTest extends TestCase
     public function testSubHour()
     {
         $day = '2011-11-30';
-        $class = new DateHelper($day);
+        $class = new DateChange($day);
         $this->assertEquals(
             '2011-11-29 23:00:00',
             $class
                 ->subHour(1)
                 ->getDate('Y-m-d H:i:s')
-        );
-    }
-    
-    public function testFill()
-    {
-        $dateStart = '2011-01-01';
-        $dateEnd = '2011-01-05';
-        $class = new DateHelper($dateStart);
-        $this->assertEquals(
-            ['02', '03', '04'],
-            $class->fill($dateEnd, 'd')
-        );
-        $this->assertEquals(
-            ['01', '02', '03', '04'],
-            $class->fill($dateEnd, 'd', true)
-        );
-        $this->assertEquals(
-            ['02', '03', '04', '05'],
-            $class->fill($dateEnd, 'd', false, true)
-        );
-        $this->assertEquals(
-            ['01', '02', '03', '04', '05'],
-            $class->fill($dateEnd, 'd', true, true)
-        );
-        $this->assertEquals(
-            ['01', '31', '30'],
-            $class->fill('2010-12-30', 'd', true, true)
-        );
-        $this->assertEquals(
-            ['01 00', '01 01', '01 02', '01 03'],
-            $class->fill('2011-01-01 03:00:00', 'd H', true, true, new DateInterval('PT1H'))
         );
     }
 }
