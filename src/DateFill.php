@@ -169,7 +169,7 @@ class DateFill
     {
         try {
             $this->_interval = new \DateInterval(
-                (isset($this->_params['interval'])) ? $this->_params['interval'] : DateFill::INTERVAL_DAY
+                $this->_params['interval'] ?? DateFill::INTERVAL_DAY
             );
         } catch (\Exception $e) {
             $this->_errors[] = $e;
@@ -183,11 +183,11 @@ class DateFill
     private function fillFromAndTo()
     {
         $this->_from = new \DateTime(
-            (isset($this->_params['from'])) ? $this->_params['from'] : 'now',
+            $this->_params['from'] ?? 'now',
             $this->_timezone
         );
         $this->_to = new \DateTime(
-            (isset($this->_params['to'])) ? $this->_params['to'] : 'now',
+            $this->_params['to'] ?? 'now',
             $this->_timezone
         );
     }
