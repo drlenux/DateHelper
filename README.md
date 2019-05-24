@@ -1,4 +1,9 @@
+
+[![Latest Stable Version](https://img.shields.io/packagist/v/drlenux/date-helper.svg)](https://packagist.org/packages/drlenux/date-helper)
+[![Total Downloads](https://img.shields.io/packagist/dt/drlenux/date-helper.svg)](https://packagist.org/packages/drlenux/date-helper)
 [![Build Status](https://travis-ci.org/drlenux/DateHelper.svg?branch=master)](https://travis-ci.org/drlenux/DateHelper)
+[![php version](https://img.shields.io/packagist/php-v/drlenux/date-helper.svg)](https://packagist.org/packages/drlenux/date-helper)
+[![scrutinizer](https://scrutinizer-ci.com/g/drlenux/DateHelper/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drlenux/DateHelper/?branch=master)
 
 
 Author: `DrLenux`
