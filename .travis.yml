@@ -1,1 +1,20 @@
 language: php
+
+env:
+  global:
+    - TASK_TEST_PHP=1
+    - DEFAULT_COMPOSER_FLAGS="--prefer-dist --no-interaction --no-progress --optimize-autoloader"
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
+install:
+  - travis_retry composer install $DEFAULT_COMPOSER_FLAGS
+
+script:
+  - |
+    if [ $TASK_TEST_PHP == 1 ]; then
+      vendor/bin/phpunit --verbose
+    fi
