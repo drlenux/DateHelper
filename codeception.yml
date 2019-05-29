@@ -1,0 +1,4 @@
+include:
+  - crs
+settings:
+  colors: true

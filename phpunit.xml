@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit bootstrap="./tests/bootstrap.php"
-         backupGlobals="true"
+<phpunit bootstrap="vendor/autoload.php"
+         backupGlobals="false"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -10,5 +10,13 @@
         <testsuite name="Мой набор тестов">
             <directory>./tests</directory>
         </testsuite>
+        <logging>
+            <log type="coverage-clover" target="./tmp/clover.xml"/>
+        </logging>
     </testsuites>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory>./</directory>
+        </whitelist>
+    </filter>
 </phpunit>
