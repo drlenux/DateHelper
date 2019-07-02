@@ -3,7 +3,8 @@
     "description": "Date helper",
     "license": "MIT",
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-4": {

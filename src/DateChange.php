@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace DrLenux\DataHelper;
 
+use DateInterval;
+use DateTimeZone;
+use Exception;
+use DateTime;
+
 /**
  * Class DateChange
  *
@@ -37,13 +42,14 @@ class DateChange
      * @var \DateTime
      */
     private $_date;
-    
+
     /**
-     * DateHelper constructor.
+     * DateChange constructor.
      * @param string $date
-     * @param \DateTimeZone|null $timezone
+     * @param DateTimeZone|null $timezone
+     * @throws Exception
      */
-    public function __construct(string $date = self::TODAY, \DateTimeZone $timezone = null)
+    public function __construct(string $date = self::TODAY, DateTimeZone $timezone = null)
     {
         $this->_date = new \DateTime($date, $timezone);
     }
@@ -57,9 +63,9 @@ class DateChange
     }
     
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateTime(): \DateTime
+    public function getDateTime(): DateTime
     {
         return $this->_date;
     }
@@ -95,10 +101,10 @@ class DateChange
                 $this->{$params[0]}($arguments[0], $type);
                 return $this;
             } else {
-                throw new \Exception('Expected only one integer argument' . $name);
+                throw new Exception('Expected only one integer argument' . $name);
             }
         }
-        throw new \Exception('Don\'t call method ' . $name);
+        throw new Exception('Don\'t call method ' . $name);
     }
     
     /**
@@ -108,7 +114,7 @@ class DateChange
      */
     protected function sub(int $count, string $type)
     {
-        $this->_date->sub(new \DateInterval(str_replace('{count}', $count, $type)));
+        $this->_date->sub(new DateInterval(str_replace('{count}', $count, $type)));
     }
     
     /**
@@ -118,6 +124,15 @@ class DateChange
      */
     protected function add(int $count, string $type)
     {
-        $this->_date->add(new \DateInterval(str_replace('{count}', $count, $type)));
+        $this->_date->add(new DateInterval(str_replace('{count}', $count, $type)));
+    }
+
+    /**
+     * @param DateChange $date
+     * @return bool|DateInterval
+     */
+    public function diff(DateChange $date): DateInterval
+    {
+        return $this->getDateTime()->diff($date->getDateTime());
     }
 }

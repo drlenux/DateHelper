@@ -170,7 +170,10 @@ class DateChangeTest extends TestCase
                 ->getDate('Y-m-d H:i:s')
         );
     }
-    
+
+    /**
+     * @throws Exception
+     */
     public function testSubHour()
     {
         $day = '2011-11-30';
@@ -181,5 +184,19 @@ class DateChangeTest extends TestCase
                 ->subHour(1)
                 ->getDate('Y-m-d H:i:s')
         );
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDiff()
+    {
+        $day = '2011-11-30';
+        $date = new DateChange($day);
+        $dateDiff = new DateChange($day);
+        $dateDiff->subYear()->subDay();
+        $actual = $date->diff($dateDiff)->days;
+        $expected = 366;
+        $this->assertEquals($expected, $actual);
     }
 }

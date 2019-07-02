@@ -14,19 +14,21 @@ License: `MIT`
 Allow method `DateChange`:
 ```php
 interface DateChange {
-    function addDay(int $count = 1)
-    function addMonth(int $count = 1)
-    function addYear(int $count = 1)
-    function addHour(int $count = 1)
-    function addMinute(int $count = 1)
-    function addSeconds(int $count = 1)
+    function addDay(int $count = 1): self;
+    function addMonth(int $count = 1): self;
+    function addYear(int $count = 1): self;
+    function addHour(int $count = 1): self;
+    function addMinute(int $count = 1): self;
+    function addSeconds(int $count = 1): self;
 
-    function subDay(int $count = 1)
-    function subMonth(int $count = 1)
-    function subYear(int $count = 1)
-    function subHour(int $count = 1)
-    function subMinute(int $count = 1)
-    function subSeconds(int $count = 1)
+    function subDay(int $count = 1): self;
+    function subMonth(int $count = 1): self;
+    function subYear(int $count = 1): self;
+    function subHour(int $count = 1): self;
+    function subMinute(int $count = 1): self;
+    function subSeconds(int $count = 1): self;
+    
+    function diff(DateChange $date): DateInterval|bool;
 }
 ```
 
@@ -99,5 +101,22 @@ return [
     '23:53:59',
     '23:51:59'
 ];
+*/
+```
+
+Example `Diff`:
+```php
+<?php
+
+use DrLenux\DataHelper\DateChange;
+
+$date1 = new DateChange('01-01-2018');
+$date2 = new DateChange('01-01-2017');
+
+$diff = $date1->diff($date2);
+echo $diff->days;
+
+/*
+return 365;
 */
 ```
