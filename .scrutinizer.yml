@@ -4,6 +4,11 @@ build:
       tests:
         override:
           - php-scrutinizer-run
+          - command: phpunit
+            coverage:
+              file: './tmp/coverage.xml'
+              format: clover
+
 filter:
   excluded_paths:
     - "tests/"
