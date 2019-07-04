@@ -5,6 +5,7 @@
 [![php version](https://img.shields.io/packagist/php-v/drlenux/date-helper.svg)](https://packagist.org/packages/drlenux/date-helper)
 [![scrutinizer](https://scrutinizer-ci.com/g/drlenux/DateHelper/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drlenux/DateHelper/?branch=master)
 [![scrutinizer](https://scrutinizer-ci.com/g/drlenux/DateHelper/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/g/drlenux/DateHelper/?branch=master)
+[![scrutinizer](https://scrutinizer-ci.com/g/drlenux/DateHelper/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drlenux/DateHelper/?branch=master)
 
 
 Author: `DrLenux`
